@@ -4,7 +4,7 @@ import { Input } from "twui";
 export default function Web() {
   return (
     <div className="container mx-auto">
-      <h1 className="text-sm text-green-600">Web</h1>
+      <h1 className="text-sm text-purple-600">Web</h1>
       <Button />
       <div className="w-72">
         <Input
@@ -17,6 +17,9 @@ export default function Web() {
             },
           }}
         />
+        <Input placeholder="Default" />
+        <Input placeholder="Large" variant="large" />
+        <Input placeholder="Search..." variant="search" />
       </div>
     </div>
   );

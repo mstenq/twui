@@ -10,10 +10,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf /dist && yarn build:esm && yarn build:cjs",
-    "build:esm": "tsc",
-    "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
+    "build:esm": "tsc --outDir ./dist/esm",
+    "build:cjs": "tsc --module CommonJS --outDir ./dist/cjs",
+    "dev:esm": "tsc --outDir ./dist/esm --watch",
+    "dev:cjs": "tsc --module CommonJS --outDir ./dist/cjs --watch",
     "tw:watch": "npx tailwindcss -i ./src/styles.css -o ./dist/tkit.css --watch",
-    "dev": "yarn concurrently \"yarn tw:watch\" \"yarn storybook\"",
+    "dev": "yarn concurrently \"yarn tw:watch\" \"yarn storybook\" \"yarn dev:esm\" \"yarn dev:cjs\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -45,5 +47,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "remeda": "^1.0.1"
+  }
 }

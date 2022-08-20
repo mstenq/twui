@@ -10,6 +10,7 @@ export default function Web() {
         <Input
           placeholder="Placeholder..."
           startAdornment="Date"
+          type="date"
           classes={{
             root: "rounded-lg overflow-hidden",
             startAdornment: {

@@ -1,19 +1,12 @@
 import React, { createContext, useContext } from "react";
-import { InputAdornmentSX, InputProps, InputVariants } from "../components";
+import { Theme } from "./ThemeType";
 
-export type Theme = {
-  components?: {
-    Input?: Record<keyof InputVariants, Omit<InputProps, "variant">>;
-    InputAdornment?: {
-      default?: InputAdornmentSX;
-    };
-  };
-};
+const defaultTheme = {};
 
-const ThemeContext = createContext<Theme>({});
+const ThemeContext = createContext<Theme>(defaultTheme);
 
 export const ThemeProvider = ({
-  theme = {},
+  theme = defaultTheme,
   children,
 }: {
   theme?: Theme;

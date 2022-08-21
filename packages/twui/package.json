@@ -9,11 +9,12 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf /dist && yarn build:esm && yarn build:cjs",
+    "build": "rm -rf /dist && yarn build:esm && yarn build:cjs && yarn tw:build",
     "build:esm": "tsc --outDir ./dist/esm",
     "build:cjs": "tsc --module CommonJS --outDir ./dist/cjs",
     "dev:esm": "tsc --outDir ./dist/esm --watch",
     "dev:cjs": "tsc --module CommonJS --outDir ./dist/cjs --watch",
+    "tw:build": "npx tailwindcss -i ./src/styles.css -o ./dist/tkit.css",
     "tw:watch": "npx tailwindcss -i ./src/styles.css -o ./dist/tkit.css --watch",
     "dev": "yarn concurrently \"yarn tw:watch\" \"yarn storybook\" \"yarn dev:esm\" \"yarn dev:cjs\"",
     "storybook": "start-storybook -p 6006",

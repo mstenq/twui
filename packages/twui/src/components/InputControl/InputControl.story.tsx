@@ -12,6 +12,8 @@ export default {
     error: "",
     required: true,
     disabled: false,
+    size: "md",
+    variant: "default",
   },
 } as ComponentMeta<typeof InputControl>;
 

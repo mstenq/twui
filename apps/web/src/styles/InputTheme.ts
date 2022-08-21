@@ -1,15 +1,8 @@
-import { InputProps, InputSX } from "twui";
-
-declare module "twui" {
-  export interface InputVariants {
-    large: true;
-    search: true;
-  }
-}
+import { InputProps } from "twui";
 
 export const InputDefault: InputProps = {
   classes: {
-    root: "bg-gray-50 has-text:bg-green-100",
+    root: { add: "TEST bg-gray-50 has-text:bg-green-100" },
   },
 };
 
@@ -20,6 +13,7 @@ export const InputLarge: InputProps = {
 };
 
 export const InputSearch: InputProps = {
+  baseVariant: "filled",
   startAdornment: "🔎",
   type: "search",
   classes: {

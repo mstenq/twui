@@ -22,6 +22,7 @@ export default function Web() {
         <Input placeholder="Default" />
         <Input placeholder="Large" variant="large" />
         <Input placeholder="Search..." variant="search" />
+        <Input placeholder="Filled" variant="filled" />
       </div>
     </div>
   );

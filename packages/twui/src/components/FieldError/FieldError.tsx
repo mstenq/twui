@@ -1,20 +1,21 @@
-import React, { HTMLProps, ReactNode } from "react";
+import React, { HTMLProps, ReactNode, useMemo } from "react";
 import { useTheme } from "../../theme";
-import { TUIClass } from "../../types";
-import { tw } from "../../utils";
+import { Size, SXClass } from "../../types";
+import { getDataAttributes, tw } from "../../utils";
 
 export type FieldErrorSX = {
-  root?: TUIClass;
+  root?: SXClass;
 };
 
 export interface FieldErrorVariants {
   default: true;
 }
 
-export type FieldErrorProps = HTMLProps<HTMLDivElement> & {
+export type FieldErrorProps = Omit<HTMLProps<HTMLDivElement>, "size"> & {
   variant?: keyof FieldErrorVariants;
   children?: ReactNode;
   classes?: FieldErrorSX;
+  size?: Size;
 };
 
 export const FieldError: React.FC<FieldErrorProps> = ({
@@ -22,12 +23,33 @@ export const FieldError: React.FC<FieldErrorProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const { children, classes, ...rest } = {
-    ...theme?.components?.FieldError?.[variant],
+  const {
+    children,
+    classes,
+    size = "md",
+    ...rest
+  } = {
+    ...theme?.FieldError?.[variant],
     ...props,
   };
+
+  const dataAttributes = useMemo(
+    () => ({
+      "data-size": size,
+      ...getDataAttributes(rest),
+    }),
+    [size, rest]
+  );
+
   return (
-    <div {...rest} className={tw("text-xs text-error-500", classes?.root)}>
+    <div
+      {...dataAttributes}
+      {...rest}
+      className={tw(
+        "is-xs:text-xs is-sm:text-sm is-lg:text-base is-xl:text-lg text-error-600",
+        classes?.root
+      )}
+    >
       {children}
     </div>
   );

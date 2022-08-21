@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from "react";
 import { Theme } from "./ThemeType";
 
-const defaultTheme = {};
+const defaultTheme: Theme = {};
 
 const ThemeContext = createContext<Theme>(defaultTheme);
 

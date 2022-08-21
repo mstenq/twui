@@ -15,10 +15,10 @@
     "build:cjs": "tsc --module CommonJS --outDir ./dist/cjs",
     "dev:esm": "tsc --outDir ./dist/esm --watch",
     "dev:cjs": "tsc --module CommonJS --outDir ./dist/cjs --watch",
-    "tw:build": "npx tailwindcss -i ./src/styles.css -o ./dist/tkit.css",
+    "tw:build": "npx tailwindcss -i ./src/styles.css -o ./dist/tkit.css --minify",
     "tw:watch": "npx tailwindcss -i ./src/styles.css -o ./dist/tkit.css --watch",
     "dev": "yarn concurrently \"yarn tw:watch\" \"yarn storybook\" \"yarn dev:esm\" \"yarn dev:cjs\"",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 --no-open",
     "build-storybook": "build-storybook"
   },
   "keywords": [],
@@ -34,6 +34,7 @@
     "@storybook/manager-webpack4": "^6.5.10",
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
+    "@types/lodash.merge": "^4.6.7",
     "@types/node": "^18.7.6",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
@@ -50,6 +51,10 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.6",
+    "install": "^0.13.0",
+    "lodash.merge": "^4.6.2",
+    "npm": "^8.18.0",
     "remeda": "^1.0.1"
   }
 }

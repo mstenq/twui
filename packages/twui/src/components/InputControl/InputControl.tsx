@@ -1,45 +1,56 @@
 import { HTMLProps, ReactNode, useMemo } from "react";
 import { useTheme } from "../../theme";
-import { TUIClass } from "../../types";
+import { SXClass, Size } from "../../types";
 import { tw } from "../../utils";
 import { FieldError, FieldErrorVariants } from "../FieldError";
-import { Input } from "../Input/Input";
+import { Input, InputVariants } from "../Input/Input";
 import { Label, LabelVariants } from "../Label";
+import { InputControlVariants } from "./InputControl.variants";
 
 export type InputControlSX = {
-  root?: TUIClass;
+  root?: SXClass;
 };
 
 export interface InputControlVariants {
   default: true;
+  filled: true;
 }
 
-export type InputControlProps = HTMLProps<HTMLInputElement> & {
+export type InputControlProps = Omit<HTMLProps<HTMLInputElement>, "size"> & {
   variant?: keyof InputControlVariants;
   label?: ReactNode;
   labelVariant?: keyof LabelVariants;
+  inputVariant?: keyof InputVariants;
   description?: ReactNode;
   classes?: InputControlSX;
   fieldErrorVariant?: keyof FieldErrorVariants;
   error?: ReactNode;
+  size?: Size;
 };
+export type InputControlTheme = Partial<
+  Record<keyof InputControlVariants, Omit<InputControlProps, "variant">>
+>;
 
 export const InputControl: React.FC<InputControlProps> = ({
   variant = "default",
   ...props
 }) => {
   const theme = useTheme();
+  const baseClasses = InputControlVariants?.[variant]?.classes;
   const {
     children,
     classes,
     label,
     labelVariant = "default",
+    inputVariant = "default",
     description,
     error,
     fieldErrorVariant,
+    size = "md",
     ...inputProps
   } = {
-    ...theme?.components?.InputControl?.[variant],
+    ...InputControlVariants?.[variant],
+    ...theme?.InputControl?.[variant],
     ...props,
   };
 
@@ -61,13 +72,19 @@ export const InputControl: React.FC<InputControlProps> = ({
           description={description}
           htmlFor={inputProps?.name}
           required={inputProps?.required}
+          size={size}
         >
           {label}
         </Label>
       )}
-      <Input {...inputProps} hasError={Boolean(error)} />
+      <Input
+        {...inputProps}
+        hasError={Boolean(error)}
+        size={size}
+        variant={inputVariant}
+      />
       {error && (
-        <FieldError {...dataAttributes} variant={fieldErrorVariant}>
+        <FieldError {...dataAttributes} variant={fieldErrorVariant} size={size}>
           {error}
         </FieldError>
       )}

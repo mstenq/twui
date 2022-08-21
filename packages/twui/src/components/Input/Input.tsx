@@ -1,40 +1,59 @@
 import { HTMLProps, ReactNode, useMemo, useState } from "react";
 import { useTheme } from "../../theme";
-import { TUIClass } from "../../types";
+import { SXClass, Size } from "../../types";
 import { tw } from "../../utils";
 import { InputAdornment, InputAdornmentSX } from "../InputAdornment";
+import { InputVariants } from "./Input.variants";
 
 export type InputSX = {
-  root?: TUIClass;
-  input?: TUIClass;
+  root?: SXClass;
+  input?: SXClass;
   startAdornment?: InputAdornmentSX;
   endAdornment?: InputAdornmentSX;
 };
 
 export interface InputVariants {
   default: true;
+  filled: true;
 }
 
-export type InputProps = HTMLProps<HTMLInputElement> & {
+export type InputProps = Omit<HTMLProps<HTMLInputElement>, "size"> & {
   variant?: keyof InputVariants;
+  baseVariant?: "default" | "filled"; //Hardcoded as InputVariants are extendable
   startAdornment?: ReactNode;
   endAdornment?: ReactNode;
   classes?: InputSX;
   hasError?: boolean;
+  size?: Size;
 };
+
+export type InputTheme = Partial<
+  Record<keyof InputVariants, Omit<InputProps, "variant">>
+>;
 
 export const Input: React.FC<InputProps> = ({
   variant = "default",
   ...props
 }) => {
-  //Merge themeProps with instance props
+  const [value, setValue] = useState("");
   const theme = useTheme();
-  const { startAdornment, endAdornment, classes, hasError, ...inputProps } = {
-    ...theme?.components?.Input?.[variant],
+
+  const {
+    startAdornment,
+    endAdornment,
+    classes,
+    hasError,
+    size = "md",
+    baseVariant = "default",
+    ...inputProps
+  } = {
+    ...InputVariants?.[variant],
+    ...theme?.Input?.[variant],
     ...props,
   };
 
-  const [value, setValue] = useState("");
+  const baseClasses =
+    InputVariants?.[variant]?.classes ?? InputVariants?.[baseVariant]?.classes;
 
   const dataAttributes = useMemo(
     () => ({
@@ -42,22 +61,28 @@ export const Input: React.FC<InputProps> = ({
       "data-has-text": Boolean(value),
       "data-is-disabled": Boolean(inputProps?.disabled),
       "data-is-readonly": Boolean(inputProps?.readOnly),
+      "data-has-startadornment": Boolean(startAdornment),
+      "data-has-endadornment": Boolean(endAdornment),
+      "data-size": size,
     }),
-    [hasError, value, inputProps?.disabled, inputProps?.readOnly]
+    [
+      hasError,
+      value,
+      inputProps?.disabled,
+      inputProps?.readOnly,
+      size,
+      startAdornment,
+      endAdornment,
+    ]
   );
 
   return (
-    <div
-      {...dataAttributes}
-      className={tw(
-        "border border-gray-300 flex items-stretch focus-within:border-primary-600 is-disabled:opacity-50 is-disabled:cursor-not-allowed has-error:border-error-400",
-        classes?.root
-      )}
-    >
+    <div {...dataAttributes} className={tw(baseClasses?.root, classes?.root)}>
       {startAdornment && (
         <InputAdornment
           {...dataAttributes}
           classes={{ ...classes?.startAdornment }}
+          size={size}
         >
           {startAdornment}
         </InputAdornment>
@@ -66,16 +91,14 @@ export const Input: React.FC<InputProps> = ({
         {...dataAttributes}
         value={value}
         onChange={(e) => setValue(e.target?.value)}
-        className={tw(
-          "p-2 w-full bg-transparent block border-none focus:outline-none is-disabled:cursor-not-allowed",
-          classes?.input
-        )}
+        className={tw(baseClasses?.input, classes?.input)}
         {...inputProps}
       />
       {endAdornment && (
         <InputAdornment
           {...dataAttributes}
           classes={{ ...classes?.endAdornment }}
+          size={size}
         >
           {endAdornment}
         </InputAdornment>

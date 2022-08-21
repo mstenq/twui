@@ -1,12 +1,17 @@
 import { Theme } from "twui";
 import { InputDefault, InputLarge, InputSearch } from "./InputTheme";
 
+declare module "twui" {
+  export interface InputVariants {
+    large: true;
+    search: true;
+  }
+}
+
 export const theme: Theme = {
-  components: {
-    Input: {
-      default: InputDefault,
-      large: InputLarge,
-      search: InputSearch,
-    },
+  Input: {
+    default: InputDefault,
+    large: InputLarge,
+    search: InputSearch,
   },
 };

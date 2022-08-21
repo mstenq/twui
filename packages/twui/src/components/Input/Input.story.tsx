@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-
+import { MailIcon } from "@heroicons/react/outline";
 import { Input } from "./Input";
+import { HeroIcon } from "../HeroIcon";
 
 export default {
   title: "Input",
@@ -11,6 +12,8 @@ export default {
     placeholder: "Placeholder",
     disabled: false,
     readOnly: false,
+    variant: "default",
+    size: "md",
   },
 } as ComponentMeta<typeof Input>;
 
@@ -31,22 +34,27 @@ Custom.args = {
   },
 };
 
-export const StartAdornment = Template.bind({});
-StartAdornment.args = {
+export const TextAdornment = Template.bind({});
+TextAdornment.args = {
   startAdornment: "$",
-
-  classes: {
-    startAdornment: { root: "bg-gray-200 border-r-2 px-4" },
-  },
+  endAdornment: ".00",
 };
 
-export const EndAdornment = Template.bind({});
-EndAdornment.args = {
+export const IconAdornment = Template.bind({});
+IconAdornment.args = {
+  startAdornment: (
+    <HeroIcon>
+      <MailIcon />
+    </HeroIcon>
+  ),
   endAdornment: "units",
   classes: {
-    root: { remove: "items-stretch", add: "items-center" },
-    endAdornment: {
-      root: "bg-blue-500 rounded-full text-white text-xs mr-2 py-1",
+    root: {
+      remove: "border-gray-100",
+      add: "rounded-xl border-gray-300",
+    },
+    startAdornment: {
+      root: { remove: "has-error:text-error-600 rounded" },
     },
   },
 };

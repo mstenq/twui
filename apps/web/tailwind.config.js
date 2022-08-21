@@ -1,4 +1,4 @@
-const plugin = require("tailwindcss/plugin");
+const colors = require("tailwindcss/colors");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,11 +7,12 @@ module.exports = {
     "../../packages/twui/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: colors.purple,
+        error: colors.pink,
+      },
+    },
   },
-  plugins: [
-    plugin(({ addVariant }) => {
-      addVariant("has-text", '&[data-has-text="true"]');
-    }),
-  ],
+  plugins: [require("twui/plugin")],
 };

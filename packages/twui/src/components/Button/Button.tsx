@@ -85,6 +85,7 @@ export const Button: React.FC<ButtonProps> = ({
           {...dataAttributes}
           classes={{ ...classes?.startAdornment }}
           size={size}
+          color={color}
         >
           {startAdornment}
         </InputAdornment>
@@ -95,6 +96,7 @@ export const Button: React.FC<ButtonProps> = ({
           {...dataAttributes}
           classes={{ ...classes?.endAdornment }}
           size={size}
+          color={color}
         >
           {endAdornment}
         </InputAdornment>

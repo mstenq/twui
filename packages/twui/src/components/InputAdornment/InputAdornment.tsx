@@ -16,13 +16,13 @@ export type InputAdornmentProps = Omit<HTMLProps<HTMLDivElement>, "size"> & {
   children?: ReactNode;
   classes?: InputAdornmentSX;
   size?: Size;
+  color?: string;
 };
 
 const renderChildren = (
   children: ReactNode | undefined,
   dataAttributes: Record<string, string>
 ) => {
-  console.log(children);
   if (!children) return null;
   if (typeof children === "string" || typeof children === "number")
     return children;
@@ -33,6 +33,7 @@ export const InputAdornment: React.FC<InputAdornmentProps> = ({
   children,
   classes,
   size = "md",
+  color,
   ...rest
 }) => {
   const dataAttributes = useMemo(
@@ -47,8 +48,9 @@ export const InputAdornment: React.FC<InputAdornmentProps> = ({
       {...dataAttributes}
       {...rest}
       className={tw(
-        "TWUI-InputAdornment-root px-2 flex items-center text-nuetral-600 has-error:text-error-600 is-xs:px-1 is-xs:text-xs is-sm:text-sm is-lg:text-xl is-xl:text-2xl",
-        classes?.root
+        "TWUI-InputAdornment-root px-2 flex items-center text-neutral-600 has-error:text-error-600 is-xs:px-1 is-xs:text-xs is-sm:text-sm is-lg:text-xl is-xl:text-2xl",
+        classes?.root,
+        color
       )}
     >
       {renderChildren(children, dataAttributes)}

@@ -6,5 +6,5 @@ module.exports = [
   "warning",
   "info",
   "success",
-  "nuetral",
+  "neutral",
 ];

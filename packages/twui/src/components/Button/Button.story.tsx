@@ -20,3 +20,12 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};
+
+export const StartAdornment = Template.bind({});
+StartAdornment.args = {
+  startAdornment: (
+    <HeroIcon>
+      <MailIcon />
+    </HeroIcon>
+  ),
+};

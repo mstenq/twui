@@ -19,14 +19,14 @@ module.exports = plugin(
     theme: {
       extend: {
         colors: {
-          nuetral: colors.slate,
+          neutral: colors.slate,
           primary: colors.violet,
           secondary: colors.sky,
           tertiary: colors.cyan,
           error: colors.rose,
           warning: colors.yellow,
           info: colors.blue,
-          success: colors.lime,
+          success: colors.green,
         },
       },
     },

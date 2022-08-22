@@ -47,7 +47,7 @@ export const InputAdornment: React.FC<InputAdornmentProps> = ({
       {...dataAttributes}
       {...rest}
       className={tw(
-        "TWUI-InputAdornment-root px-2 flex items-center text-gray-600 has-error:text-error-600 is-xs:px-1 is-xs:text-xs is-sm:text-sm is-lg:text-xl is-xl:text-2xl",
+        "TWUI-InputAdornment-root px-2 flex items-center text-nuetral-600 has-error:text-error-600 is-xs:px-1 is-xs:text-xs is-sm:text-sm is-lg:text-xl is-xl:text-2xl",
         classes?.root
       )}
     >

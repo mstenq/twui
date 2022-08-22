@@ -24,14 +24,14 @@ const input = `
 export const InputVariants: InputTheme = {
   default: {
     classes: {
-      root: `${root} border-gray-300`,
+      root: `${root} border-nuetral-300`,
       input: `${input}`,
     },
   },
   filled: {
     classes: {
-      root: `${root} bg-gray-100 border-gray-100 rounded`,
-      input: `${input} placeholder:text-gray-500`,
+      root: `${root} bg-nuetral-100 border-nuetral-100 rounded`,
+      input: `${input} placeholder:text-nuetral-500`,
     },
   },
 };

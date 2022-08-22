@@ -50,8 +50,8 @@ IconAdornment.args = {
   endAdornment: "units",
   classes: {
     root: {
-      remove: "border-gray-100",
-      add: "rounded-xl border-gray-300",
+      remove: "border-nuetral-100",
+      add: "rounded-xl border-nuetral-300",
     },
     startAdornment: {
       root: { remove: "has-error:text-error-600 rounded" },

@@ -75,7 +75,7 @@ export const Label: React.FC<LabelProps> = ({
         <div
           {...dataAttributes}
           className={tw(
-            "text-xs is-lg:font-thin is-lg:text-sm is-xl:font-thin is-xl:text-base text-gray-500",
+            "text-xs is-lg:font-thin is-lg:text-sm is-xl:font-thin is-xl:text-base text-nuetral-500",
             classes?.description
           )}
         >

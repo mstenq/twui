@@ -7,6 +7,7 @@ const root = `
   is-lg:text-lg
   is-sm:text-sm is-sm:py-1.5
   is-xs:text-xs is-xs:py-0.5 is-xs:px-1.5
+  is-disabled:opacity-50 is-disabled:cursor-not-allowed 
   `;
 
 export const ButtonVariants: ButtonTheme = {

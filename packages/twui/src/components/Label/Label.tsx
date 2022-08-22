@@ -51,13 +51,13 @@ export const Label: React.FC<LabelProps> = ({
   return (
     <div
       {...dataAttributes}
-      className={tw("is-disabled:opacity-50", classes?.root)}
+      className={tw("is-disabled:opacity-50 pb-1", classes?.root)}
     >
       <label
         {...dataAttributes}
         {...rest}
         className={tw(
-          "is-xs:font-bold is-xs:text-xs is-sm:text-sm is-lg:text-lg is-xl:text-xl",
+          "is-xs:font-bold is-xs:text-xs is-sm:text-sm is-lg:text-lg is-xl:text-xl font-medium text-gray-700",
           classes?.label
         )}
       >

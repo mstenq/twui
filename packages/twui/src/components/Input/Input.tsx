@@ -25,6 +25,7 @@ export type InputProps = Omit<HTMLProps<HTMLInputElement>, "size"> & {
   classes?: InputSX;
   hasError?: boolean;
   size?: Size;
+  color?: string;
 };
 
 export type InputTheme = Partial<
@@ -45,6 +46,7 @@ export const Input: React.FC<InputProps> = ({
     hasError,
     size = "md",
     baseVariant = "default",
+    color = "primary",
     ...inputProps
   } = {
     ...InputVariants?.[variant],
@@ -77,7 +79,10 @@ export const Input: React.FC<InputProps> = ({
   );
 
   return (
-    <div {...dataAttributes} className={tw(baseClasses?.root, classes?.root)}>
+    <div
+      {...dataAttributes}
+      className={tw(baseClasses?.root, classes?.root, color)}
+    >
       {startAdornment && (
         <InputAdornment
           {...dataAttributes}
@@ -91,7 +96,7 @@ export const Input: React.FC<InputProps> = ({
         {...dataAttributes}
         value={value}
         onChange={(e) => setValue(e.target?.value)}
-        className={tw(baseClasses?.input, classes?.input)}
+        className={tw(baseClasses?.input, classes?.input, color)}
         {...inputProps}
       />
       {endAdornment && (

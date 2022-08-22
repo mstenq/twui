@@ -14,6 +14,7 @@ export default {
     disabled: false,
     size: "md",
     variant: "default",
+    color: "primary",
   },
 } as ComponentMeta<typeof InputControl>;
 

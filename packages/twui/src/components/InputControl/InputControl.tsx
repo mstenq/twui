@@ -26,6 +26,7 @@ export type InputControlProps = Omit<HTMLProps<HTMLInputElement>, "size"> & {
   fieldErrorVariant?: keyof FieldErrorVariants;
   error?: ReactNode;
   size?: Size;
+  color?: string;
 };
 export type InputControlTheme = Partial<
   Record<keyof InputControlVariants, Omit<InputControlProps, "variant">>
@@ -47,6 +48,7 @@ export const InputControl: React.FC<InputControlProps> = ({
     error,
     fieldErrorVariant,
     size = "md",
+    color = "primary",
     ...inputProps
   } = {
     ...InputControlVariants?.[variant],
@@ -82,6 +84,7 @@ export const InputControl: React.FC<InputControlProps> = ({
         hasError={Boolean(error)}
         size={size}
         variant={inputVariant}
+        color={color}
       />
       {error && (
         <FieldError {...dataAttributes} variant={fieldErrorVariant} size={size}>

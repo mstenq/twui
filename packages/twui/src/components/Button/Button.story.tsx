@@ -29,3 +29,12 @@ StartAdornment.args = {
     </HeroIcon>
   ),
 };
+
+export const IconButton = Template.bind({});
+IconButton.args = {
+  children: (
+    <HeroIcon>
+      <MailIcon />
+    </HeroIcon>
+  ),
+};

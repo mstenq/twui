@@ -14,6 +14,7 @@ export default {
     readOnly: false,
     variant: "default",
     size: "md",
+    color: "primary",
   },
 } as ComponentMeta<typeof Input>;
 

@@ -24,8 +24,3 @@ export const StartAdornment = Template.bind({});
 StartAdornment.args = {
   startAdornment: <MailIcon />,
 };
-
-export const IconButton = Template.bind({});
-IconButton.args = {
-  children: <MailIcon />,
-};

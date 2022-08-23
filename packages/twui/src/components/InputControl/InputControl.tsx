@@ -2,17 +2,22 @@ import { HTMLProps, ReactNode, useMemo } from "react";
 import { useTheme } from "../../theme";
 import { SXClass, Size } from "../../types";
 import { tw } from "../../utils";
-import { FieldError, FieldErrorVariants } from "../FieldError";
-import { Input, InputVariants } from "../Input/Input";
-import { Label, LabelVariants } from "../Label";
+import { FieldError, FieldErrorSX, FieldErrorVariants } from "../FieldError";
+import { Input, InputSX, InputVariants } from "../Input/Input";
+import { Label, LabelSX, LabelVariants } from "../Label";
 import { InputControlVariants } from "./InputControl.variants";
 
 export type InputControlSX = {
   root?: SXClass;
+  label?: LabelSX;
+  description?: SXClass;
+  input?: InputSX;
+  fieldError?: FieldErrorSX;
 };
 
 export interface InputControlVariants {
   default: true;
+  descriptionBelow: true;
   filled: true;
 }
 
@@ -37,13 +42,13 @@ export const InputControl: React.FC<InputControlProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const baseClasses = InputControlVariants?.[variant]?.classes;
   const {
     children,
     classes,
     label,
     labelVariant = "default",
     inputVariant = "default",
+    baseVariant = "default",
     description,
     error,
     fieldErrorVariant,
@@ -56,17 +61,20 @@ export const InputControl: React.FC<InputControlProps> = ({
     ...props,
   };
 
+  const baseClasses = InputControlVariants?.[baseVariant]?.classes;
+
   const dataAttributes = useMemo(
     () => ({
+      "data-size": size,
       "data-has-error": Boolean(error),
       "data-is-disabled": Boolean(inputProps?.disabled),
       "data-is-readonly": Boolean(inputProps?.readOnly),
     }),
-    [error, inputProps?.disabled, inputProps?.readOnly]
+    [error, inputProps?.disabled, inputProps?.readOnly, size]
   );
 
   return (
-    <div {...dataAttributes} className={tw("", classes?.root)}>
+    <div {...dataAttributes} className={tw(baseClasses?.root, classes?.root)}>
       {label && (
         <Label
           {...dataAttributes}
@@ -75,9 +83,18 @@ export const InputControl: React.FC<InputControlProps> = ({
           htmlFor={inputProps?.name}
           required={inputProps?.required}
           size={size}
+          classes={{ ...baseClasses?.label, ...classes?.label }}
         >
           {label}
         </Label>
+      )}
+      {description && (
+        <div
+          {...dataAttributes}
+          className={tw(baseClasses?.description, classes?.description, color)}
+        >
+          {description}
+        </div>
       )}
       <Input
         {...inputProps}
@@ -85,9 +102,15 @@ export const InputControl: React.FC<InputControlProps> = ({
         size={size}
         variant={inputVariant}
         color={color}
+        classes={{ ...baseClasses?.input, ...classes?.input }}
       />
       {error && (
-        <FieldError {...dataAttributes} variant={fieldErrorVariant} size={size}>
+        <FieldError
+          {...dataAttributes}
+          variant={fieldErrorVariant}
+          size={size}
+          classes={{ ...baseClasses?.fieldError, ...classes?.fieldError }}
+        >
           {error}
         </FieldError>
       )}

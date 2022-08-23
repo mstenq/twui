@@ -71,17 +71,6 @@ export const Label: React.FC<LabelProps> = ({
           </span>
         )}
       </label>
-      {description && (
-        <div
-          {...dataAttributes}
-          className={tw(
-            "text-xs is-lg:font-thin is-lg:text-sm is-xl:font-thin is-xl:text-base text-neutral-500",
-            classes?.description
-          )}
-        >
-          {description}
-        </div>
-      )}
     </div>
   );
 };

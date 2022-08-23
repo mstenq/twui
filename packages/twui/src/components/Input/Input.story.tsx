@@ -1,7 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { MailIcon } from "@heroicons/react/outline";
 import { Input } from "./Input";
-import { HeroIcon } from "../HeroIcon";
 
 export default {
   title: "Input",
@@ -43,11 +42,7 @@ TextAdornment.args = {
 
 export const IconAdornment = Template.bind({});
 IconAdornment.args = {
-  startAdornment: (
-    <HeroIcon>
-      <MailIcon />
-    </HeroIcon>
-  ),
+  startAdornment: <MailIcon />,
   endAdornment: "units",
   classes: {
     root: {

@@ -1,7 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { MailIcon } from "@heroicons/react/outline";
 import { Button } from "./Button";
-import { HeroIcon } from "../HeroIcon";
 
 export default {
   title: "Button",
@@ -23,18 +22,10 @@ Default.args = {};
 
 export const StartAdornment = Template.bind({});
 StartAdornment.args = {
-  startAdornment: (
-    <HeroIcon>
-      <MailIcon />
-    </HeroIcon>
-  ),
+  startAdornment: <MailIcon />,
 };
 
 export const IconButton = Template.bind({});
 IconButton.args = {
-  children: (
-    <HeroIcon>
-      <MailIcon />
-    </HeroIcon>
-  ),
+  children: <MailIcon />,
 };

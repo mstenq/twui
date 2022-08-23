@@ -1,17 +1,16 @@
-import { InputAdornmentSX, InputTheme } from "../components";
+import { InputTheme } from "../components";
+import { AdornmentTheme } from "../components/Adornment";
 import { ButtonTheme } from "../components/Button";
 import { FieldErrorProps, FieldErrorVariants } from "../components/FieldError";
-import { HeroIconTheme } from "../components/HeroIcon";
+import { IconButtonTheme } from "../components/IconButton";
 import { InputControlTheme } from "../components/InputControl";
 import { LabelProps, LabelVariants } from "../components/Label";
 
 export type Theme = {
   Button?: ButtonTheme;
-  HeroIcon?: HeroIconTheme;
+  IconButton?: IconButtonTheme;
   Input?: InputTheme;
-  InputAdornment?: {
-    default?: InputAdornmentSX;
-  };
+  Adornment?: AdornmentTheme;
   InputControl?: InputControlTheme;
   Label?: Record<keyof LabelVariants, Omit<LabelProps, "variant">>;
   FieldError?: Record<

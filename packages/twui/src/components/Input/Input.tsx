@@ -2,14 +2,14 @@ import { HTMLProps, ReactNode, useMemo, useState } from "react";
 import { useTheme } from "../../theme";
 import { SXClass, Size } from "../../types";
 import { tw } from "../../utils";
-import { InputAdornment, InputAdornmentSX } from "../InputAdornment";
+import { Adornment, AdornmentSX } from "../Adornment";
 import { InputVariants } from "./Input.variants";
 
 export type InputSX = {
   root?: SXClass;
   input?: SXClass;
-  startAdornment?: InputAdornmentSX;
-  endAdornment?: InputAdornmentSX;
+  startAdornment?: AdornmentSX;
+  endAdornment?: AdornmentSX;
 };
 
 export interface InputVariants {
@@ -84,13 +84,13 @@ export const Input: React.FC<InputProps> = ({
       className={tw(baseClasses?.root, classes?.root, color)}
     >
       {startAdornment && (
-        <InputAdornment
+        <Adornment
           {...dataAttributes}
           classes={{ ...classes?.startAdornment }}
           size={size}
         >
           {startAdornment}
-        </InputAdornment>
+        </Adornment>
       )}
       <input
         {...dataAttributes}
@@ -100,13 +100,13 @@ export const Input: React.FC<InputProps> = ({
         {...inputProps}
       />
       {endAdornment && (
-        <InputAdornment
+        <Adornment
           {...dataAttributes}
           classes={{ ...classes?.endAdornment }}
           size={size}
         >
           {endAdornment}
-        </InputAdornment>
+        </Adornment>
       )}
     </div>
   );

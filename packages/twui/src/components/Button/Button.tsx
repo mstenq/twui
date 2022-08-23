@@ -2,20 +2,20 @@ import { ButtonHTMLAttributes, ReactNode, useMemo } from "react";
 import { useTheme } from "../../theme";
 import { SXClass, Size } from "../../types";
 import { tw } from "../../utils";
-import { InputAdornment, InputAdornmentSX } from "../InputAdornment";
+import { Adornment, AdornmentSX } from "../Adornment";
 import { ButtonVariants } from "./Button.variants";
 
 export type ButtonSX = {
   root?: SXClass;
-  startAdornment?: InputAdornmentSX;
-  endAdornment?: InputAdornmentSX;
+  startAdornment?: AdornmentSX;
+  endAdornment?: AdornmentSX;
 };
 
 export interface ButtonVariants {
   default: true;
   light: true;
   outline: true;
-  text: true;
+  subtle: true;
 }
 
 export type ButtonProps = Omit<
@@ -23,7 +23,7 @@ export type ButtonProps = Omit<
   "size"
 > & {
   variant?: keyof ButtonVariants;
-  baseVariant?: "default" | "light" | "outline" | "text";
+  baseVariant?: "default" | "light" | "outline" | "subtle";
   startAdornment?: ReactNode;
   endAdornment?: ReactNode;
   classes?: ButtonSX;
@@ -81,25 +81,25 @@ export const Button: React.FC<ButtonProps> = ({
       className={tw(baseClasses?.root, classes?.root, color)}
     >
       {startAdornment && (
-        <InputAdornment
+        <Adornment
           {...dataAttributes}
           classes={{ ...classes?.startAdornment }}
           size={size}
           color={color}
         >
           {startAdornment}
-        </InputAdornment>
+        </Adornment>
       )}
       {children}
       {endAdornment && (
-        <InputAdornment
+        <Adornment
           {...dataAttributes}
           classes={{ ...classes?.endAdornment }}
           size={size}
           color={color}
         >
           {endAdornment}
-        </InputAdornment>
+        </Adornment>
       )}
     </button>
   );

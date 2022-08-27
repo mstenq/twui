@@ -14,7 +14,7 @@ export const updateComponentIndex = () => {
       }
 
       // Update Imports
-      let updatedContent = `${content}\n${exportString}`;
+      let updatedContent = `${content}${exportString}`;
 
       return updatedContent;
     },

@@ -1,0 +1,13 @@
+import { {{component_name}}Theme } from "./{{component_name}}";
+
+const root = `
+  TWUI-{{component_name}}-root bg-primary-600 text-white p-6 rounded
+  `;
+
+export const {{component_name}}Variants: {{component_name}}Theme = {
+  default: {
+    classes: {
+      root: `${root}`,
+    },
+  },
+};

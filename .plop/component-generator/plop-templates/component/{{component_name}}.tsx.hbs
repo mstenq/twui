@@ -1,0 +1,63 @@
+import { forwardRef, HTMLProps, ReactNode, Ref } from "react";
+import { useTheme } from "@/hooks";
+import { Color, Size, SXClass } from "@/types";
+import { tw } from "@/utils";
+import { {{component_name}}Variants } from "./{{component_name}}.variant";
+
+export type {{component_name}}SX = {
+  root?: SXClass;
+};
+
+export interface {{component_name}}Variants {
+  default: true;
+}
+
+export type {{component_name}}Props = Omit<HTMLProps<HTMLDivElement>, "size"> & {
+  variant?: keyof {{component_name}}Variants;
+  baseVariant?: "default";
+  children?: ReactNode;
+  classes?: {{component_name}}SX;
+  size?: Size;
+  color?: Color;
+};
+
+export type {{component_name}}Theme = Partial<
+  Record<
+    keyof {{component_name}}Variants,
+    Omit<{{component_name}}Props, "variant" | "children">
+  >
+>;
+
+const _{{component_name}} = (
+  { variant = "default", ...props }: {{component_name}}Props,
+  ref?: Ref<HTMLDivElement>
+) => {
+  const theme = useTheme();
+  const {
+    children,
+    classes,
+    size = "md",
+    color = "primary",
+    baseVariant = "default",
+    ...rootProps
+  } = {
+    ...{{component_name}}Variants?.[variant],
+    ...theme?.{{component_name}}?.[variant],
+    ...props,
+  };
+  const baseClasses =
+    {{component_name}}Variants?.[variant]?.classes ??
+    {{component_name}}Variants?.[baseVariant]?.classes;
+
+  return (
+    <div
+      ref={ref}
+      {...rootProps}
+      className={tw(baseClasses?.root, classes?.root, color)}
+    >
+      {{component_name}}
+    </div>
+  );
+};
+
+export const {{component_name}} = forwardRef(_{{component_name}});

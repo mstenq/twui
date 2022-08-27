@@ -8,9 +8,12 @@ import {
   InputTheme,
   FieldErrorTheme,
   LabelTheme,
+  TooltipTheme,
 } from "@/components";
 
+
 export type Theme = {
+  Tooltip?: TooltipTheme;
   Label?: LabelTheme;
   FieldError?: FieldErrorTheme;
   Accordion?: AccordionTheme;

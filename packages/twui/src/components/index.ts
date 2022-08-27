@@ -7,3 +7,4 @@ export * from "./Input";
 export * from "./InputControl";
 export * from "./Label";
 export * from "./ButtonGroup";
+export * from "./Tooltip"

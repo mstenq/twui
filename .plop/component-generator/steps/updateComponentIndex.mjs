@@ -5,7 +5,7 @@ export const updateComponentIndex = () => {
     type: "modify",
     path: path.join(process.cwd(), `/packages/twui/src/components/index.ts`),
     transform: (content, data) => {
-      const exportString = `export * from "./${data.module_name}"`;
+      const exportString = `export * from "./${data.component_name}"`;
 
       //Prevent multiple adds
       const existingIndex = content.indexOf(exportString);

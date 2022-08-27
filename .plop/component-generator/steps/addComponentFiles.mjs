@@ -7,6 +7,6 @@ export const addComponentFiles = () => ({
     `/packages/twui/src/components/{{component_name}}`
   ),
   base: "component-generator/plop-templates/component/",
-  templateFiles: ["component-generator/plop-templates/components/**/*.hbs"],
+  templateFiles: ["component-generator/plop-templates/component/**/*.hbs"],
   force: false, //Overwrite during testing
 });

@@ -1,13 +1,12 @@
-import { HTMLProps, ReactNode, useMemo } from "react";
+import { forwardRef, HTMLProps, ReactNode, Ref, useMemo } from "react";
 import { useTheme } from "@/hooks";
-import { Size, SXClass } from "@/types";
+import { Color, Size, SXClass } from "@/types";
 import { getDataAttributes, tw } from "@/utils";
+import { LabelVariants } from "./Label.variant";
 
 export type LabelSX = {
   root?: SXClass;
-  label?: SXClass;
   required?: SXClass;
-  description?: SXClass;
 };
 
 export interface LabelVariants {
@@ -16,61 +15,63 @@ export interface LabelVariants {
 
 export type LabelProps = Omit<HTMLProps<HTMLLabelElement>, "size"> & {
   variant?: keyof LabelVariants;
+  baseVariant?: "default";
   children?: ReactNode;
-  description?: ReactNode;
   classes?: LabelSX;
-  required?: boolean;
   size?: Size;
+  color?: Color;
 };
 
-export const Label: React.FC<LabelProps> = ({
-  variant = "default",
-  ...props
-}) => {
+export type LabelTheme = Partial<
+  Record<keyof LabelVariants, Omit<LabelProps, "variant" | "children">>
+>;
+
+const _Label = (
+  { variant = "default", ...props }: LabelProps,
+  ref?: Ref<HTMLLabelElement>
+) => {
   const theme = useTheme();
   const {
     children,
     classes,
-    description,
     size = "md",
+    color = "primary",
+    baseVariant = "default",
     required = false,
-    ...rest
+    ...labelProps
   } = {
+    ...LabelVariants?.[variant],
     ...theme?.Label?.[variant],
     ...props,
   };
+  const baseClasses =
+    LabelVariants?.[variant]?.classes ?? LabelVariants?.[baseVariant]?.classes;
 
   const dataAttributes = useMemo(
     () => ({
       "data-size": size,
-      ...getDataAttributes(rest),
+      ...getDataAttributes(labelProps),
     }),
-    [size, rest]
+    [size, labelProps]
   );
 
   return (
-    <div
-      {...dataAttributes}
-      className={tw("is-disabled:opacity-50 pb-1", classes?.root)}
+    <label
+      ref={ref}
+      {...labelProps}
+      className={tw(baseClasses?.root, classes?.root, color)}
     >
-      <label
-        {...dataAttributes}
-        {...rest}
-        className={tw(
-          "is-xs:font-bold is-xs:text-xs is-sm:text-sm is-lg:text-lg is-xl:text-xl font-medium text-gray-700",
-          classes?.label
-        )}
-      >
-        {children}
-        {required && (
-          <span
-            {...dataAttributes}
-            className={tw("pl-1 text-error-400", classes?.required)}
-          >
-            *
-          </span>
-        )}
-      </label>
-    </div>
+      {children}
+      {required && (
+        <span
+          {...dataAttributes}
+          className={tw(baseClasses?.required, classes?.root, color)}
+        >
+          *
+        </span>
+      )}
+    </label>
   );
 };
+
+export const Label = forwardRef(_Label);

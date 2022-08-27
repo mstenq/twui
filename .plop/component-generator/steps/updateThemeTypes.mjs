@@ -20,9 +20,9 @@ export const updateThemeTypes = () => {
       }
 
       // Update Content
-      let updatedContent = content.replace(IMPORT_MARKER, `${importString}\n${IMPORT_MARKER}`);
+      let updatedContent = content.replace(IMPORT_MARKER, `  ${importString}\n${IMPORT_MARKER}\n`);
 
-      updatedContent = updatedContent.replace(SETUP_MARKER, `${SETUP_MARKER}\n${setupString}`);
+      updatedContent = updatedContent.replace(SETUP_MARKER, `${SETUP_MARKER}\n  ${setupString}`);
 
       return updatedContent;
     },

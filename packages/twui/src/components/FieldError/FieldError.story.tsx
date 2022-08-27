@@ -1,14 +1,19 @@
+import { colors } from "@/types";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-
 import { FieldError } from "./FieldError";
 
 export default {
   title: "FieldError",
   component: FieldError,
-  argTypes: {},
+  argTypes: {
+    color: {
+      options: colors,
+      control: { type: "select" },
+    },
+  },
   args: {
-    children: "Label",
-    description: "Label Description",
+    color: "primary",
+    children: "Field Error",
   },
 } as ComponentMeta<typeof FieldError>;
 

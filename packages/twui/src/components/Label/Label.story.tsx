@@ -1,14 +1,20 @@
+import { colors } from "@/types";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-
 import { Label } from "./Label";
 
 export default {
   title: "Label",
   component: Label,
-  argTypes: {},
+  argTypes: {
+    color: {
+      options: colors,
+      control: { type: "select" },
+    },
+  },
   args: {
+    color: "primary",
     children: "Label",
-    description: "Label Description",
+    required: false,
   },
 } as ComponentMeta<typeof Label>;
 

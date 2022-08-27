@@ -1,4 +1,4 @@
-import { SXClass } from "../types";
+import { SXClass } from "@/types";
 
 const normalizeClasses = (str: string) => str.replace(/\s+/g, " ").trim();
 

@@ -5,9 +5,9 @@ import {
   ReactNode,
   useMemo,
 } from "react";
-import { useTheme } from "../../theme";
-import { SXClass, Size } from "../../types";
-import { tw } from "../../utils";
+import { useTheme } from "@/hooks";
+import { SXClass, Size } from "@/types";
+import { tw } from "@/utils";
 import { AccordionVariants } from "./Accordion.variants";
 import {
   AccordionSingleProps,
@@ -30,12 +30,18 @@ export interface AccordionVariants {
   default: true;
   contained: true;
   filled: true;
+  "filled-inverse": true;
   separated: true;
 }
 
 interface BaseProps {
   variant?: keyof AccordionVariants;
-  baseVariant?: "default" | "contained" | "filled" | "separated";
+  baseVariant?:
+    | "default"
+    | "contained"
+    | "filled"
+    | "filled-inverse"
+    | "separated";
   classes?: AccordionSX;
   children: ReactNode;
   collapsible?: boolean;

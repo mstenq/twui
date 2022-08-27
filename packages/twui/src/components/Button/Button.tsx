@@ -1,8 +1,14 @@
-import { ButtonHTMLAttributes, ReactNode, useMemo } from "react";
-import { useTheme } from "../../theme";
-import { SXClass, Size } from "../../types";
-import { tw } from "../../utils";
-import { Adornment, AdornmentSX } from "../Adornment";
+import {
+  ButtonHTMLAttributes,
+  forwardRef,
+  ReactNode,
+  Ref,
+  useMemo,
+} from "react";
+import { useTheme } from "@/hooks";
+import { SXClass, Size, Color } from "@/types";
+import { tw } from "@/utils";
+import { Adornment, AdornmentSX } from "@/components/Adornment";
 import { ButtonVariants } from "./Button.variants";
 
 export type ButtonSX = {
@@ -30,17 +36,17 @@ export type ButtonProps = Omit<
   hasError?: boolean;
   size?: Size;
   children: ReactNode;
-  color?: string;
+  color?: Color;
 };
 
 export type ButtonTheme = Partial<
   Record<keyof ButtonVariants, Omit<ButtonProps, "variant" | "children">>
 >;
 
-export const Button: React.FC<ButtonProps> = ({
-  variant = "default",
-  ...props
-}) => {
+const _Button = (
+  { variant = "default", ...props }: ButtonProps,
+  ref?: Ref<HTMLButtonElement>
+) => {
   const theme = useTheme();
 
   const {
@@ -76,6 +82,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      ref={ref}
       {...dataAttributes}
       {...buttonProps}
       className={tw(baseClasses?.root, classes?.root, color)}
@@ -104,3 +111,5 @@ export const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
+
+export const Button = forwardRef(_Button);

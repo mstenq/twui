@@ -5,5 +5,3 @@ interface SXObject {
 }
 
 export type SXClass = string | SXObject;
-
-export type Size = "xs" | "sm" | "md" | "lg" | "xl";

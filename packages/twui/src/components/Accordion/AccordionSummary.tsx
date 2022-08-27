@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Header, Trigger } from "@radix-ui/react-accordion";
 import { useAccordionContext } from "./AccordionProvider";
 import { ChevronDownIcon } from "@heroicons/react/outline";
-import { SXClass } from "../../types";
+import { SXClass } from "@/types";
 
 export type AccordionSummarySX = {
   root?: SXClass;

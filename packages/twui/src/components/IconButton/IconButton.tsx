@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, ReactNode, useMemo } from "react";
-import { useTheme } from "../../theme";
-import { SXClass, Size } from "../../types";
-import { tw } from "../../utils";
+import { useTheme } from "@/hooks";
+import { SXClass, Size } from "@/types";
+import { tw } from "@/utils";
 import { IconButtonVariants } from "./IconButton.variants";
 
 export type IconButtonSX = {

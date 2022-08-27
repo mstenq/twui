@@ -5,9 +5,9 @@ import {
   ReactNode,
   useMemo,
 } from "react";
-import { useTheme } from "../../theme";
-import { SXClass, Size } from "../../types";
-import { tw } from "../../utils";
+import { useTheme } from "@/hooks";
+import { SXClass, Size } from "@/types";
+import { tw } from "@/utils";
 import { AdornmentVariants } from "./Adornment.variants";
 
 export type AdornmentSX = {

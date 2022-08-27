@@ -53,11 +53,16 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@floating-ui/react-dom": "^1.0.0",
+    "@floating-ui/react-dom-interactions": "^0.9.3",
     "@heroicons/react": "^1.0.6",
     "@radix-ui/react-accordion": "^1.0.0",
+    "framer-motion": "^7.2.1",
     "install": "^0.13.0",
     "lodash.merge": "^4.6.2",
     "npm": "^8.18.0",
-    "remeda": "^1.0.1"
+    "react-merge-refs": "^2.0.1",
+    "remeda": "^1.0.1",
+    "tsconfig-paths-webpack-plugin": "^4.0.0"
   }
 }

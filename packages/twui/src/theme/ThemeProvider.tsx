@@ -3,7 +3,7 @@ import { Theme } from "./ThemeType";
 
 const defaultTheme: Theme = {};
 
-const ThemeContext = createContext<Theme>(defaultTheme);
+export const ThemeContext = createContext<Theme>(defaultTheme);
 
 export const ThemeProvider = ({
   theme = defaultTheme,
@@ -16,5 +16,3 @@ export const ThemeProvider = ({
     <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
   );
 };
-
-export const useTheme = () => useContext(ThemeContext);

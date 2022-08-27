@@ -1,7 +1,7 @@
 import { HTMLProps, ReactNode, useMemo } from "react";
-import { useTheme } from "../../theme";
-import { Size, SXClass } from "../../types";
-import { getDataAttributes, tw } from "../../utils";
+import { useTheme } from "@/hooks";
+import { Size, SXClass } from "@/types";
+import { getDataAttributes, tw } from "@/utils";
 
 export type LabelSX = {
   root?: SXClass;

@@ -1,8 +1,8 @@
 import { HTMLProps, ReactNode, useMemo, useState } from "react";
-import { useTheme } from "../../theme";
-import { SXClass, Size } from "../../types";
-import { tw } from "../../utils";
-import { Adornment, AdornmentSX } from "../Adornment";
+import { useTheme } from "@/hooks";
+import { SXClass, Size } from "@/types";
+import { tw } from "@/utils";
+import { Adornment, AdornmentSX } from "@/components";
 import { InputVariants } from "./Input.variants";
 
 export type InputSX = {

@@ -1,10 +1,18 @@
 import { HTMLProps, ReactNode, useMemo } from "react";
-import { useTheme } from "../../theme";
-import { SXClass, Size } from "../../types";
-import { tw } from "../../utils";
-import { FieldError, FieldErrorSX, FieldErrorVariants } from "../FieldError";
-import { Input, InputSX, InputVariants } from "../Input/Input";
-import { Label, LabelSX, LabelVariants } from "../Label";
+import { useTheme } from "@/hooks";
+import { SXClass, Size } from "@/types";
+import { tw } from "@/utils";
+import {
+  FieldError,
+  FieldErrorSX,
+  FieldErrorVariants,
+  Input,
+  InputSX,
+  InputVariants,
+  Label,
+  LabelSX,
+  LabelVariants,
+} from "@/components";
 import { InputControlVariants } from "./InputControl.variants";
 
 export type InputControlSX = {

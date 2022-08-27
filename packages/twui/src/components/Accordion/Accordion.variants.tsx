@@ -51,9 +51,21 @@ export const AccordionVariants: AccordionTheme = {
   filled: {
     classes: {
       root: `${root}`,
-      item: `${item} is-open:bg-neutral-50 rounded-lg`,
+      item: `${item} is-open:bg-neutral-50 rounded-lg is-open:mb-2`,
       summary: {
-        root: `${summaryRoot} p-4`,
+        root: `${summaryRoot} p-4 rounded-lg`,
+        text: `${summaryText} `,
+        icon: `${summaryIcon} `,
+      },
+      content: `${content} text-sm px-4 pb-4 leading-6`,
+    },
+  },
+  "filled-inverse": {
+    classes: {
+      root: `${root} bg-neutral-50 rounded-lg p-2`,
+      item: `${item} is-open:bg-white is-open:shadow rounded-lg is-open:mb-2`,
+      summary: {
+        root: `${summaryRoot} p-4 rounded-lg`,
         text: `${summaryText} `,
         icon: `${summaryIcon} `,
       },

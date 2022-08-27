@@ -1,11 +1,16 @@
-import { InputTheme } from "../components";
-import { AccordionTheme } from "../components/Accordion";
-import { AdornmentTheme } from "../components/Adornment";
-import { ButtonTheme } from "../components/Button";
-import { FieldErrorProps, FieldErrorVariants } from "../components/FieldError";
-import { IconButtonTheme } from "../components/IconButton";
-import { InputControlTheme } from "../components/InputControl";
-import { LabelProps, LabelVariants } from "../components/Label";
+import {
+  LabelProps,
+  LabelVariants,
+  InputControlTheme,
+  IconButtonTheme,
+  FieldErrorProps,
+  FieldErrorVariants,
+  ButtonGroupTheme,
+  ButtonTheme,
+  AdornmentTheme,
+  AccordionTheme,
+  InputTheme,
+} from "@/components";
 
 export type Theme = {
   Accordion?: AccordionTheme;
@@ -19,4 +24,5 @@ export type Theme = {
   Input?: InputTheme;
   InputControl?: InputControlTheme;
   Label?: Record<keyof LabelVariants, Omit<LabelProps, "variant">>;
+  ButtonGroup?: ButtonGroupTheme;
 };

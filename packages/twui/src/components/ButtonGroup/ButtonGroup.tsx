@@ -1,19 +1,19 @@
 import { forwardRef, HTMLProps, ReactNode, Ref } from "react";
-import { useTheme } from "@/hooks";
+import { useTheme } from "@/theme";
 import { Color, Size, SXClass } from "@/types";
 import { tw } from "@/utils";
+import { FloatingDelayGroup } from "@floating-ui/react-dom-interactions";
+import { ButtonSX, ButtonVariants } from "@/components";
 import { ButtonGroupVariants } from "./ButtonGroup.variant";
+import { ButtonGroupProvider } from "./ButtonGroupProvider";
 
 export type ButtonGroupSX = {
   root?: SXClass;
+  button?: ButtonSX;
 };
 
-export interface ButtonGroupVariants {
-  default: true;
-}
-
 export type ButtonGroupProps = Omit<HTMLProps<HTMLDivElement>, "size"> & {
-  variant?: keyof ButtonGroupVariants;
+  variant?: keyof ButtonVariants;
   baseVariant?: "default";
   children?: ReactNode;
   classes?: ButtonGroupSX;
@@ -22,10 +22,7 @@ export type ButtonGroupProps = Omit<HTMLProps<HTMLDivElement>, "size"> & {
 };
 
 export type ButtonGroupTheme = Partial<
-  Record<
-    keyof ButtonGroupVariants,
-    Omit<ButtonGroupProps, "variant" | "children">
-  >
+  Record<keyof ButtonVariants, Omit<ButtonGroupProps, "variant" | "children">>
 >;
 
 const _ButtonGroup = (
@@ -39,6 +36,7 @@ const _ButtonGroup = (
     size = "md",
     color = "primary",
     baseVariant = "default",
+    buttonVariant = "default",
     ...rootProps
   } = {
     ...ButtonGroupVariants?.[variant],
@@ -50,13 +48,26 @@ const _ButtonGroup = (
     ButtonGroupVariants?.[baseVariant]?.classes;
 
   return (
-    <div
-      ref={ref}
-      {...rootProps}
-      className={tw(baseClasses?.root, classes?.root, color)}
+    <ButtonGroupProvider
+      value={{
+        buttonGroupTheme: {
+          size,
+          color,
+          variant,
+          classes: baseClasses?.button,
+        },
+      }}
     >
-      ButtonGroup
-    </div>
+      <FloatingDelayGroup delay={{ open: 1000, close: 200 }}>
+        <div
+          ref={ref}
+          {...rootProps}
+          className={tw(baseClasses?.root, classes?.root, color)}
+        >
+          {children}
+        </div>
+      </FloatingDelayGroup>
+    </ButtonGroupProvider>
   );
 };
 

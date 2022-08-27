@@ -5,10 +5,10 @@ import {
   Ref,
   useMemo,
 } from "react";
-import { useTheme } from "@/hooks";
+import { useTheme } from "@/theme";
 import { SXClass, Size, Color } from "@/types";
 import { tw } from "@/utils";
-import { Adornment, AdornmentSX } from "@/components/Adornment";
+import { Adornment, AdornmentSX, useButtonGroup } from "@/components";
 import { ButtonVariants } from "./Button.variants";
 
 export type ButtonSX = {
@@ -48,6 +48,9 @@ const _Button = (
   ref?: Ref<HTMLButtonElement>
 ) => {
   const theme = useTheme();
+  const { buttonGroupTheme } = useButtonGroup();
+
+  const themeVariant = buttonGroupTheme?.variant ?? variant;
 
   const {
     startAdornment,
@@ -60,14 +63,15 @@ const _Button = (
     color,
     ...buttonProps
   } = {
-    ...ButtonVariants?.[variant],
-    ...theme?.Button?.[variant],
+    ...ButtonVariants?.[themeVariant],
+    ...theme?.Button?.[themeVariant],
+    ...buttonGroupTheme,
     ...props,
   };
 
   const baseClasses =
-    ButtonVariants?.[variant]?.classes ??
-    ButtonVariants?.[baseVariant]?.classes;
+    ButtonVariants?.[themeVariant]?.classes ??
+    ButtonVariants?.[themeVariant]?.classes;
 
   const dataAttributes = useMemo(
     () => ({

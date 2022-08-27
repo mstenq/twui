@@ -1,5 +1,5 @@
 import { forwardRef, HTMLProps, ReactNode, Ref, useMemo } from "react";
-import { useTheme } from "@/hooks";
+import { useTheme } from "@/theme";
 import { Color, Size, SXClass } from "@/types";
 import { getDataAttributes, tw } from "@/utils";
 import { FieldErrorVariants } from "./FieldError.variant";

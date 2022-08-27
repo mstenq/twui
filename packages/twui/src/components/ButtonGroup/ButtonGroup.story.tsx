@@ -1,16 +1,37 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Tooltip, Button } from "@/components";
 
 import { ButtonGroup } from "./ButtonGroup";
+import { colors } from "@/types";
 
 export default {
   title: "ButtonGroup",
   component: ButtonGroup,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    color: {
+      options: colors,
+      control: { type: "select" },
+    },
+  },
+  args: {
+    color: "primary",
+    variant: "default",
+  },
 } as ComponentMeta<typeof ButtonGroup>;
 
 const Template: ComponentStory<typeof ButtonGroup> = (args) => (
-  <ButtonGroup {...args} />
+  <ButtonGroup {...args}>
+    <Tooltip label="Testing1">
+      <Button>Test</Button>
+    </Tooltip>
+    <Tooltip label="Testing2">
+      <Button>Test</Button>
+    </Tooltip>
+    <Button>Test</Button>
+    <Tooltip label="Testing1">
+      <Button>Test</Button>
+    </Tooltip>
+  </ButtonGroup>
 );
 
 export const Default = Template.bind({});

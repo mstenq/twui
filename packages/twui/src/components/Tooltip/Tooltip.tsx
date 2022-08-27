@@ -32,6 +32,7 @@ export const Tooltip = ({
   placement = "top",
 }: TooltipProps) => {
   const { delay, setCurrentId } = useDelayGroupContext();
+  const delayMs = typeof delay === "object" ? delay.open : 100;
   const [open, setOpen] = useState(false);
 
   const { x, y, reference, floating, strategy, context } = useFloating({
@@ -48,7 +49,7 @@ export const Tooltip = ({
   });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
-    useHover(context, { restMs: 60 }),
+    useHover(context, { delay: delayMs, restMs: 100 }),
     useFocus(context),
     useRole(context, { role: "tooltip" }),
     useDismiss(context),
@@ -73,19 +74,17 @@ export const Tooltip = ({
               exit={{ opacity: 0 }}
               transition={
                 // When in "grouped phase", make the transition faster
-                typeof delay === "object" && delay.open === 1
-                  ? { duration: 0.2, type: "spring" }
+                delayMs === 1
+                  ? { duration: 0.1 }
                   : { type: "spring", damping: 20, stiffness: 300 }
               }
-              {...getFloatingProps({
-                ref: floating,
-                className: "Tooltip",
-                style: {
-                  position: strategy,
-                  top: y ?? 0,
-                  left: x ?? 0,
-                },
-              })}
+              ref={floating}
+              style={{
+                position: strategy,
+                top: y ?? 0,
+                left: x ?? 0,
+              }}
+              {...getFloatingProps()}
             >
               {label}
             </m.div>

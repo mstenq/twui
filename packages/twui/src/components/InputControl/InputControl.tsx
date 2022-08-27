@@ -1,5 +1,5 @@
 import { HTMLProps, ReactNode, useMemo } from "react";
-import { useTheme } from "@/hooks";
+import { useTheme } from "@/theme";
 import { SXClass, Size } from "@/types";
 import { tw } from "@/utils";
 import {

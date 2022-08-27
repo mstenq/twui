@@ -3,7 +3,7 @@ import path from "path";
 const IMPORT_MARKER = `} from "@/components";`
 const SETUP_MARKER = `export type Theme = {`
 
-export const updateComponentIndex = () => {
+export const updateThemeTypes = () => {
   return {
     type: "modify",
     path: path.join(process.cwd(), `/packages/twui/src/theme/ThemeType.tsx`),

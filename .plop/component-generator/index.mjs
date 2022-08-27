@@ -1,4 +1,5 @@
 import { addComponentFiles } from "./steps/addComponentFiles.mjs";
+import { updateThemeTypes } from "./steps/updateThemeTypes.mjs";
 import { updateComponentIndex } from "./steps/updateComponentIndex.mjs";
 import { hasNumbers, hasSpaces, isNotPascalCase } from "./validators.mjs";
 
@@ -31,6 +32,6 @@ export const componentGenerator = {
       return ["Component generation cancelled"];
     }
 
-    return [addComponentFiles(), updateComponentIndex()];
+    return [addComponentFiles(), updateComponentIndex(), updateThemeTypes()];
   },
 };

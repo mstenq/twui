@@ -6,5 +6,4 @@ export * from "./IconButton";
 export * from "./Input";
 export * from "./InputControl";
 export * from "./Label";
-export * from "./Tooltip";
 export * from "./ButtonGroup";

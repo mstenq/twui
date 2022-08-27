@@ -27,8 +27,8 @@ const Template: ComponentStory<typeof ButtonGroup> = (args) => (
     <Tooltip label="Testing2">
       <Button>Test</Button>
     </Tooltip>
-    <Button>Test</Button>
-    <Tooltip label="Testing1">
+    <Button>No Tooltip</Button>
+    <Tooltip label="Testing3">
       <Button>Test</Button>
     </Tooltip>
   </ButtonGroup>

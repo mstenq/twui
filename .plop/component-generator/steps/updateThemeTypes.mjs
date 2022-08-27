@@ -12,19 +12,17 @@ export const updateThemeTypes = () => {
       const setupString = `${data.component_name}?: ${data.component_name}Theme;`;
 
       //Prevent multiple adds
-      const existingIndex = content.indexOf(importString);
-      if (existingIndex > 0) {
+      if (content.indexOf(importString) > 0) {
+        return content;
+      }
+      if (content.indexOf(setupString) > 0) {
         return content;
       }
 
       // Update Content
-      let updatedContent = content.replace(IMPORT_MARKER, `
-        ${importString}";
-        ${IMPORT_MARKER}`);
+      let updatedContent = content.replace(IMPORT_MARKER, `${importString}\n${IMPORT_MARKER}`);
 
-      updatedContent = updatedContent.replace(SETUP_MARKER, `
-        ${SETUP_MARKER}";
-        ${setupString}`);
+      updatedContent = updatedContent.replace(SETUP_MARKER, `${SETUP_MARKER}\n${setupString}`);
 
       return updatedContent;
     },

@@ -51,7 +51,6 @@ export const Adornment: React.FC<AdornmentProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-
   const {
     baseVariant = "default",
     children,
@@ -69,6 +68,7 @@ export const Adornment: React.FC<AdornmentProps> = ({
     AdornmentVariants?.[variant]?.classes ??
     AdornmentVariants?.[baseVariant]?.classes;
 
+  console.log(baseClasses);
   const dataAttributes = useMemo(
     () => ({
       "data-size": size,

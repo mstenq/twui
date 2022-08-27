@@ -1,8 +1,13 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { Tooltip, Button } from "@/components";
+import { Tooltip, Button, IconButton } from "@/components";
 
 import { ButtonGroup } from "./ButtonGroup";
 import { colors } from "@/types";
+import {
+  ChatAltIcon,
+  MailIcon,
+  PaperAirplaneIcon,
+} from "@heroicons/react/outline";
 
 export default {
   title: "ButtonGroup",
@@ -22,14 +27,22 @@ export default {
 const Template: ComponentStory<typeof ButtonGroup> = (args) => (
   <ButtonGroup {...args}>
     <Tooltip label="Testing1">
-      <Button>Test</Button>
+      <Button startAdornment={<PaperAirplaneIcon />}>Test</Button>
     </Tooltip>
     <Tooltip label="Testing2">
       <Button>Test</Button>
     </Tooltip>
     <Button>No Tooltip</Button>
     <Tooltip label="Testing3">
-      <Button>Test</Button>
+      <Button endAdornment={<MailIcon />}>Test</Button>
+    </Tooltip>
+    <IconButton>
+      <MailIcon />
+    </IconButton>
+    <Tooltip label="Testing4">
+      <IconButton>
+        <ChatAltIcon />
+      </IconButton>
     </Tooltip>
   </ButtonGroup>
 );

@@ -3,13 +3,14 @@ import { useTheme } from "@/theme";
 import { Color, Size, SXClass } from "@/types";
 import { tw } from "@/utils";
 import { FloatingDelayGroup } from "@floating-ui/react-dom-interactions";
-import { ButtonSX, ButtonVariants } from "@/components";
-import { ButtonGroupVariants } from "./ButtonGroup.variant";
+import { ButtonSX, ButtonVariants, IconButtonSX } from "@/components";
+import { ButtonGroupVariants } from "./ButtonGroup.variants";
 import { ButtonGroupProvider } from "./ButtonGroupProvider";
 
 export type ButtonGroupSX = {
   root?: SXClass;
   button?: ButtonSX;
+  iconButton?: IconButtonSX;
 };
 
 export type ButtonGroupProps = Omit<HTMLProps<HTMLDivElement>, "size"> & {
@@ -47,14 +48,18 @@ const _ButtonGroup = (
     ButtonGroupVariants?.[variant]?.classes ??
     ButtonGroupVariants?.[baseVariant]?.classes;
 
+  const sharedThemeOverrides = { size, color, variant };
+
   return (
     <ButtonGroupProvider
       value={{
-        buttonGroupTheme: {
-          size,
-          color,
-          variant,
+        buttonGroupButtonTheme: {
+          ...sharedThemeOverrides,
           classes: baseClasses?.button,
+        },
+        buttonGroupIconButtonTheme: {
+          ...sharedThemeOverrides,
+          classes: baseClasses?.iconButton,
         },
       }}
     >

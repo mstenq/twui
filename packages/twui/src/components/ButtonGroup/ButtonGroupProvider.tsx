@@ -2,7 +2,8 @@ import React, { createContext, useContext } from "react";
 import { ButtonProps } from "@/components";
 
 export type ButtonGroupState = {
-  buttonGroupTheme?: Omit<ButtonProps, "children">;
+  buttonGroupButtonTheme?: Omit<ButtonProps, "children">;
+  buttonGroupIconButtonTheme?: Omit<ButtonProps, "children">;
 };
 
 const defaultButtonGroupState: ButtonGroupState = {};

@@ -2,18 +2,20 @@ var globSync = require("glob").sync;
 const fs = require("fs");
 const colors = require("../src/theme/colors");
 
-const results = globSync("**/*.variants.tsx", {
+const results = globSync("**/*.variants.{ts,tsx,js,jsx}", {
   nocase: true,
   strict: false,
   debug: false,
 });
+
+console.log(results);
 
 let data = "";
 results.forEach((file) => {
   data = data + " " + fs.readFileSync(file, "utf8");
 });
 
-const listOfClasses = data.match(/\S*-primary-[1234567890\/]*/gi);
+const listOfClasses = data.match(/\S*-primary-[0-9\/]*/gi);
 const uniqueClasses = [...new Set(listOfClasses)];
 
 const completeClassList = [];

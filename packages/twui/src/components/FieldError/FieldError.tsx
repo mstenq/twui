@@ -2,7 +2,7 @@ import { forwardRef, HTMLProps, ReactNode, Ref, useMemo } from "react";
 import { useTheme } from "@/theme";
 import { Color, Size, SXClass } from "@/types";
 import { getDataAttributes, tw } from "@/utils";
-import { FieldErrorVariants } from "./FieldError.variant";
+import { FieldErrorVariants } from "./FieldError.variants";
 
 export type FieldErrorSX = {
   root?: SXClass;

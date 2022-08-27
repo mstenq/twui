@@ -48,9 +48,8 @@ const _Button = (
   ref?: Ref<HTMLButtonElement>
 ) => {
   const theme = useTheme();
-  const { buttonGroupTheme } = useButtonGroup();
-
-  const themeVariant = buttonGroupTheme?.variant ?? variant;
+  const { buttonGroupButtonTheme } = useButtonGroup();
+  const themeVariant = buttonGroupButtonTheme?.variant ?? variant;
 
   const {
     startAdornment,
@@ -65,13 +64,13 @@ const _Button = (
   } = {
     ...ButtonVariants?.[themeVariant],
     ...theme?.Button?.[themeVariant],
-    ...buttonGroupTheme,
+    ...buttonGroupButtonTheme,
     ...props,
   };
 
   const baseClasses =
     ButtonVariants?.[themeVariant]?.classes ??
-    ButtonVariants?.[themeVariant]?.classes;
+    ButtonVariants?.[baseVariant]?.classes;
 
   const dataAttributes = useMemo(
     () => ({
@@ -95,8 +94,8 @@ const _Button = (
         <Adornment
           {...dataAttributes}
           classes={{ ...classes?.startAdornment }}
-          size={size}
-          color={color}
+          size={buttonGroupButtonTheme?.size ?? size}
+          color={buttonGroupButtonTheme?.color ?? color}
         >
           {startAdornment}
         </Adornment>
@@ -106,8 +105,8 @@ const _Button = (
         <Adornment
           {...dataAttributes}
           classes={{ ...classes?.endAdornment }}
-          size={size}
-          color={color}
+          size={buttonGroupButtonTheme?.size ?? size}
+          color={buttonGroupButtonTheme?.color ?? color}
         >
           {endAdornment}
         </Adornment>

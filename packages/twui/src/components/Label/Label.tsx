@@ -2,7 +2,7 @@ import { forwardRef, HTMLProps, ReactNode, Ref, useMemo } from "react";
 import { useTheme } from "@/theme";
 import { Color, Size, SXClass } from "@/types";
 import { getDataAttributes, tw } from "@/utils";
-import { LabelVariants } from "./Label.variant";
+import { LabelVariants } from "./Label.variants";
 
 export type LabelSX = {
   root?: SXClass;

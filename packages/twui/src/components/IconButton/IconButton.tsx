@@ -1,8 +1,15 @@
-import { ButtonHTMLAttributes, ReactNode, useMemo } from "react";
+import {
+  ButtonHTMLAttributes,
+  forwardRef,
+  ReactNode,
+  Ref,
+  useMemo,
+} from "react";
 import { useTheme } from "@/theme";
 import { SXClass, Size } from "@/types";
 import { tw } from "@/utils";
 import { IconButtonVariants } from "./IconButton.variants";
+import { useButtonGroup } from "../ButtonGroup";
 
 export type IconButtonSX = {
   root?: SXClass;
@@ -36,11 +43,13 @@ export type IconButtonTheme = Partial<
   >
 >;
 
-export const IconButton: React.FC<IconButtonProps> = ({
-  variant = "default",
-  ...props
-}) => {
+const _IconButton = (
+  { variant = "default", ...props }: IconButtonProps,
+  ref?: Ref<HTMLButtonElement>
+) => {
   const theme = useTheme();
+  const { buttonGroupIconButtonTheme } = useButtonGroup();
+  const themeVariant = buttonGroupIconButtonTheme?.variant ?? variant;
 
   const {
     classes,
@@ -53,12 +62,13 @@ export const IconButton: React.FC<IconButtonProps> = ({
   } = {
     ...IconButtonVariants?.[variant],
     ...theme?.IconButton?.[variant],
+    ...buttonGroupIconButtonTheme,
     ...props,
   };
 
   const baseClasses =
-    IconButtonVariants?.[variant]?.classes ??
-    IconButtonVariants?.[baseVariant]?.classes;
+    IconButtonVariants?.[themeVariant]?.classes ??
+    IconButtonVariants?.[themeVariant]?.classes;
 
   const dataAttributes = useMemo(
     () => ({
@@ -71,6 +81,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
 
   return (
     <button
+      ref={ref}
       {...dataAttributes}
       {...IconButtonProps}
       className={tw(baseClasses?.root, classes?.root, color)}
@@ -79,3 +90,5 @@ export const IconButton: React.FC<IconButtonProps> = ({
     </button>
   );
 };
+
+export const IconButton = forwardRef(_IconButton);

@@ -1,17 +1,22 @@
+import { colors } from "@/types";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-
 import { {{component_name}} } from "./{{component_name}}";
 
 export default {
   title: "{{component_name}}",
   component: {{component_name}},
-  argTypes: {},
-  args: {},
+  argTypes: {
+    color: {
+      options: colors,
+      control: { type: "select" },
+    },
+  },
+  args: {
+    color: "primary",
+  },
 } as ComponentMeta<typeof {{component_name}}>;
 
-const Template: ComponentStory<typeof {{component_name}}> = (args) => (
-  <{{component_name}} {...args} />
-);
+const Template: ComponentStory<typeof {{component_name}}> = (args) => <{{component_name}} {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

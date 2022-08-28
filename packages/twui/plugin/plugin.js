@@ -27,7 +27,7 @@ module.exports = plugin(
     theme: {
       extend: {
         colors: {
-          neutral: colors.slate,
+          neutral: colors.neutral,
           primary: colors.violet,
           secondary: colors.sky,
           tertiary: colors.cyan,

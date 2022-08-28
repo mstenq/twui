@@ -20,20 +20,26 @@ export const ButtonVariants: ButtonTheme = {
   },
   light: {
     classes: {
-      root: `${root} bg-primary-200/30 text-primary-600 hover:bg-primary-200/60 shadow-sm hover:shadow`,
-      startAdornment: { root: { replace: "text-primary-600" } },
+      root: `${root} bg-primary-200/30 text-primary-600 dark:bg-primary-600/10 dark:text-primary-300 hover:dark:bg-primary-600/20 hover:bg-primary-200/60 shadow-sm hover:shadow`,
+      startAdornment: {
+        root: { replace: "text-primary-600 dark:text-primary-300" },
+      },
     },
   },
   outline: {
     classes: {
-      root: `${root} border border-primary-600 text-primary-600 hover:bg-primary-50`,
-      startAdornment: { root: { replace: "text-primary-600" } },
+      root: `${root} border border-primary-600 dark:border-primary-300 text-primary-600 dark:text-primary-300 hover:bg-primary-50 hover:dark:bg-primary-600/20`,
+      startAdornment: {
+        root: { replace: "text-primary-600 dark:text-primary-300" },
+      },
     },
   },
   subtle: {
     classes: {
-      root: `${root} text-primary-600 hover:bg-primary-50`,
-      startAdornment: { root: { replace: "text-primary-600" } },
+      root: `${root} text-primary-600 hover:bg-primary-50 dark:text-primary-300 hover:dark:bg-primary-600/10`,
+      startAdornment: {
+        root: { replace: "text-primary-600 dark:text-primary-300" },
+      },
     },
   },
 };

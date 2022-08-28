@@ -1,7 +1,7 @@
 import { TooltipTheme } from "./Tooltip";
 
 const root = `
-  TWUI-Tooltip-root bg-black text-white py-0.5 px-1.5 text-sm rounded pointer-none
+  TWUI-Tooltip-root bg-black text-white py-0.5 px-1.5 text-sm rounded
   `;
 
 const arrow = `

@@ -1,11 +1,13 @@
 import { ButtonGroupTheme } from "./ButtonGroup";
 
 const root = `
-  TWUI-ButtonGroup-root inline-flex rounded-lg overflow-hidden
+  TWUI-ButtonGroup-root inline-flex rounded 
   `;
 
-const buttonRootAdd =
-  "rounded-none border-r last-of-type:border-none first-of-type:rounded-l last-of-type:rounded-r";
+const buttonRootAdd = `-mt-px rounded-none border-r outline-offset-[-2px] outline-[3px]
+  last-of-type:border-none last-of-type:rounded-r
+  first-of-type:rounded-l`;
+
 const buttonRootRemove = "rounded outline-offset-2";
 
 const adornmentOverride = {
@@ -23,14 +25,14 @@ export const ButtonGroupVariants: ButtonGroupTheme = {
       root: `${root}`,
       button: {
         root: {
-          add: `${buttonRootAdd} border-primary-400`,
+          add: `${buttonRootAdd} border-primary-400 outline-primary-900`,
           remove: `${buttonRootRemove}`,
           ...adornmentOverride,
         },
       },
       iconButton: {
         root: {
-          add: `${buttonRootAdd} border-primary-400`,
+          add: `${buttonRootAdd} border-primary-400 outline-primary-900`,
           remove: `${buttonRootRemove}`,
         },
       },

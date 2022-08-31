@@ -1,4 +1,4 @@
-import { forwardRef, HTMLProps, ReactNode, Ref } from "react";
+import { forwardRef, HTMLProps, ReactNode, Ref, useMemo } from "react";
 import { useTheme } from "@/theme";
 import { Color, Size, SXClass } from "@/types";
 import { tw } from "@/utils";
@@ -20,6 +20,7 @@ export type ButtonGroupProps = Omit<HTMLProps<HTMLDivElement>, "size"> & {
   classes?: ButtonGroupSX;
   size?: Size;
   color?: Color;
+  orientation?: "horizontal" | "vertical";
 };
 
 export type ButtonGroupTheme = Partial<
@@ -38,6 +39,7 @@ const _ButtonGroup = (
     color = "primary",
     baseVariant = "default",
     buttonVariant = "default",
+    orientation = "vertical",
     ...rootProps
   } = {
     ...ButtonGroupVariants?.[variant],
@@ -50,14 +52,23 @@ const _ButtonGroup = (
 
   const sharedThemeOverrides = { size, color, variant };
 
+  const dataAttributes = useMemo(
+    () => ({
+      "data-orientation": orientation,
+    }),
+    [orientation]
+  );
+
   return (
     <ButtonGroupProvider
       value={{
         buttonGroupButtonTheme: {
+          ...dataAttributes,
           ...sharedThemeOverrides,
           classes: baseClasses?.button,
         },
         buttonGroupIconButtonTheme: {
+          ...dataAttributes,
           ...sharedThemeOverrides,
           classes: baseClasses?.iconButton,
         },
@@ -65,6 +76,7 @@ const _ButtonGroup = (
     >
       <FloatingDelayGroup delay={{ open: 1000, close: 200 }}>
         <div
+          {...dataAttributes}
           ref={ref}
           {...rootProps}
           className={tw(baseClasses?.root, classes?.root, color)}

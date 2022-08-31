@@ -9,10 +9,13 @@ import {
   FieldErrorTheme,
   LabelTheme,
   TooltipTheme,
+  TabsTheme,
 } from "@/components";
 
 
+
 export type Theme = {
+  Tabs?: TabsTheme;
   Tooltip?: TooltipTheme;
   Label?: LabelTheme;
   FieldError?: FieldErrorTheme;

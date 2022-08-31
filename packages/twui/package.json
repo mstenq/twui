@@ -58,6 +58,7 @@
     "@floating-ui/react-dom-interactions": "^0.9.3",
     "@heroicons/react": "^1.0.6",
     "@radix-ui/react-accordion": "^1.0.0",
+    "@radix-ui/react-tabs": "^1.0.0",
     "framer-motion": "^7.2.1",
     "install": "^0.13.0",
     "lodash.merge": "^4.6.2",

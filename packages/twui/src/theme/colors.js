@@ -7,4 +7,5 @@ module.exports = [
   "info",
   "success",
   "neutral",
+  "dark",
 ];

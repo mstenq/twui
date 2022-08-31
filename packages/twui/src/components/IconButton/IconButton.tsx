@@ -1,5 +1,6 @@
 import {
   ButtonHTMLAttributes,
+  cloneElement,
   forwardRef,
   ReactNode,
   Ref,
@@ -13,6 +14,7 @@ import { useButtonGroup } from "../ButtonGroup";
 
 export type IconButtonSX = {
   root?: SXClass;
+  svg?: SXClass;
 };
 
 export interface IconButtonVariants {
@@ -86,7 +88,10 @@ const _IconButton = (
       {...IconButtonProps}
       className={tw(baseClasses?.root, classes?.root, color)}
     >
-      {children}
+      {cloneElement(children as JSX.Element, {
+        ...dataAttributes,
+        className: tw(baseClasses?.svg, classes?.svg, color),
+      })}
     </button>
   );
 };

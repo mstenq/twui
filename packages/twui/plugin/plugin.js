@@ -1,6 +1,19 @@
 const plugin = require("tailwindcss/plugin");
 const colors = require("tailwindcss/colors");
 
+const dark = {
+  50: "rgb(249 250 251)",
+  100: "rgb(249 250 251)",
+  200: "rgb(229 231 235)",
+  300: "rgb(229 231 235) ",
+  400: "rgb(75 85 99)",
+  500: "rgb(17 24 39)",
+  600: "black",
+  700: "black",
+  800: "black",
+  900: "black",
+};
+
 module.exports = plugin(
   ({ addVariant }) => {
     addVariant("is-xs", '&[data-size="xs"]');
@@ -22,6 +35,8 @@ module.exports = plugin(
       '&[data-state="closed"]',
       '[data-state="closed"] &',
     ]);
+    addVariant("is-vertical", '&[data-orientation="vertical"]');
+    addVariant("is-horizontal", '&[data-orientation="horizontal"]');
   },
   {
     theme: {
@@ -35,6 +50,11 @@ module.exports = plugin(
           warning: colors.yellow,
           info: colors.blue,
           success: colors.green,
+          dark: dark,
+        },
+        spacing: {
+          tabwidth: "var(--twui-offset-width)",
+          tableft: "var(--twui-offset-left)",
         },
         keyframes: {
           grow: {

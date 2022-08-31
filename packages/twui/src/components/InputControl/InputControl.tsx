@@ -87,7 +87,6 @@ export const InputControl: React.FC<InputControlProps> = ({
         <Label
           {...dataAttributes}
           variant={labelVariant}
-          description={description}
           htmlFor={inputProps?.name}
           required={inputProps?.required}
           size={size}

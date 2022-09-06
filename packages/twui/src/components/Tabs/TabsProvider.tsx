@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useMemo, useState } from "react";
+import { TabsSX } from "./Tabs";
 
 type ActiveTab = {
   offsetWidth: number;
@@ -6,19 +7,25 @@ type ActiveTab = {
 };
 
 export type TabsState = {
+  defaultTab?: string;
   activeTab?: ActiveTab;
-  setActiveTab: React.Dispatch<React.SetStateAction<ActiveTab | undefined>>;
+  setActiveTab?: React.Dispatch<React.SetStateAction<ActiveTab | undefined>>;
+  tabClasses?: Record<keyof TabsSX, string>;
+  dataAttributes?: Record<string, string>;
 };
 
 const defaultTabsState: TabsState = {
+  defaultTab: "0",
   activeTab: undefined,
   setActiveTab: () => {},
+  tabClasses: undefined,
+  dataAttributes: undefined,
 };
 
 export const TabsContext = createContext<TabsState>(defaultTabsState);
 
 export const TabsProvider = ({
-  value = defaultTabsState,
+  value,
   children,
 }: {
   value?: TabsState;
@@ -28,10 +35,12 @@ export const TabsProvider = ({
 
   const contextValue = useMemo(
     () => ({
+      ...defaultTabsState,
+      ...value,
       activeTab,
       setActiveTab,
     }),
-    [activeTab, setActiveTab]
+    [activeTab, setActiveTab, value]
   );
   return (
     <TabsContext.Provider value={contextValue}>{children}</TabsContext.Provider>

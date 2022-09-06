@@ -37,6 +37,7 @@ module.exports = plugin(
     ]);
     addVariant("is-vertical", '&[data-orientation="vertical"]');
     addVariant("is-horizontal", '&[data-orientation="horizontal"]');
+    addVariant("is-active", '&[data-state="active"]');
   },
   {
     theme: {
@@ -53,8 +54,10 @@ module.exports = plugin(
           dark: dark,
         },
         spacing: {
-          tabwidth: "var(--twui-offset-width)",
-          tableft: "var(--twui-offset-left)",
+          tabWidth: "var(--twui-offset-width)",
+          tabLeft: "var(--twui-offset-left)",
+          tabRight: "var(--twui-offset-right)",
+          tabRemaining: "var(--twui-offset-remaining)",
         },
         keyframes: {
           grow: {

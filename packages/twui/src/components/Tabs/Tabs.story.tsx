@@ -13,6 +13,7 @@ export default {
   },
   args: {
     color: "primary",
+    variant: "default",
   },
 } as ComponentMeta<typeof Tabs>;
 

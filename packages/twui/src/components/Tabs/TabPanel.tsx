@@ -1,4 +1,5 @@
 import * as RadixTabs from "@radix-ui/react-tabs";
+import { useTabs } from "./TabsProvider";
 
 export type TabPanelProps = {
   index?: string;
@@ -6,7 +7,14 @@ export type TabPanelProps = {
 };
 
 export const TabPanel = ({ index, children }: TabPanelProps) => {
+  const { tabClasses, dataAttributes } = useTabs();
   return (
-    <RadixTabs.Content value={index ?? "tab"}>{children}</RadixTabs.Content>
+    <RadixTabs.Content
+      value={index ?? "tab"}
+      className={tabClasses?.tabPanel}
+      {...dataAttributes}
+    >
+      {children}
+    </RadixTabs.Content>
   );
 };

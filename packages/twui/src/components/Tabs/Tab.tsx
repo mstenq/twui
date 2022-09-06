@@ -8,37 +8,35 @@ export type TabProps = {
 };
 
 export const Tab = ({ index, children }: TabProps) => {
-  const { activeTab, setActiveTab } = useTabs();
+  const { activeTab, setActiveTab, defaultTab, tabClasses, dataAttributes } =
+    useTabs();
   const ref = useRef<HTMLButtonElement>(null);
 
   const updateActiveTab = useCallback(
     ({ offsetWidth, offsetLeft }: HTMLButtonElement) => {
-      console.log(offsetWidth);
-      console.log(offsetLeft);
-      setActiveTab({ offsetWidth, offsetLeft });
+      setActiveTab?.({ offsetWidth, offsetLeft });
     },
-    []
+    [setActiveTab]
   );
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: React.FocusEvent<HTMLButtonElement>) => {
     const target = e.target as HTMLButtonElement;
-
-    console.log(target);
     updateActiveTab(target);
   };
 
   useEffect(() => {
-    if (ref.current && index === "0" && !activeTab) {
+    if (ref.current && !activeTab && index === defaultTab) {
       updateActiveTab(ref.current);
     }
-  }, [index, activeTab, updateActiveTab]);
+  }, [index, activeTab, updateActiveTab, defaultTab]);
 
   return (
     <RadixTabs.Trigger
       ref={ref}
       value={index ?? ""}
-      onMouseDown={handleClick}
-      className="px-4 border-b-2"
+      onFocus={handleClick}
+      className={tabClasses?.tab}
+      {...dataAttributes}
     >
       {children}
     </RadixTabs.Trigger>
